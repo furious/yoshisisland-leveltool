@@ -1,0 +1,20 @@
+{
+  "name": "frs-leveltool-web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.5",
+    "@types/node": "^22.15.30",
+    "astro": "^5.13.0",
+    "fflate": "^0.8.2",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "vitest": "^3.2.4"
+  }
+}

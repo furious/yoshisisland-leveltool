@@ -1,0 +1,107 @@
+---
+import '../styles.css';
+import ToolHeader from '../components/ToolHeader.astro';
+import iconUrl from '../assets/icon.ico';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yoshi's Island Level Tool - FURiOUS</title>
+    <meta name="description" content="Browser-based Yoshi's Island level exporter for SNES ROMs." />
+    <link rel="icon" href={iconUrl} />
+  </head>
+  <body>
+    <div id="app">
+      <div class="shell">
+        <ToolHeader
+          eyebrow="FURiOUS"
+          title="Yoshi's Island Level Tool"
+          subtitle="Load a ROM, inspect level data, export or import levels and entrances."
+          iconUrl={iconUrl}
+        >
+          <button slot="actions" class="btn primary" id="load-rom-btn">Load ROM</button>
+          <button slot="actions" class="btn primary" id="save-rom-btn" disabled>Save ROM</button>
+          <button slot="actions" class="btn" id="export-btn" disabled>Export</button>
+          <button slot="actions" class="btn" id="import-btn" disabled>Import</button>
+          <button slot="actions" class="btn" id="clear-levels-btn" disabled>Clear Levels</button>
+          <button slot="actions" class="btn" id="about-btn">About</button>
+          <a slot="actions" class="btn donate" href="https://furious.pro/support" target="_blank" rel="noreferrer">Donate</a>
+          <div slot="dropzone" class="dropzone-copy">
+            <strong>SNES ROM File</strong>
+            <span id="file-name">No ROM loaded</span>
+          </div>
+          <div slot="dropzone" class="dropzone-meta">
+            <span>Drop a .smc or .sfc file here</span>
+            <span id="load-state">Ready</span>
+          </div>
+        </ToolHeader>
+
+        <main class="layout">
+          <aside class="panel panel-info">
+            <div class="panel-header">
+              <h2 class="panel-title">ROM Header</h2>
+            </div>
+            <div class="panel-body">
+              <dl class="kv">
+                <dt>Title</dt><dd id="rom-title">-</dd>
+                <dt>Code</dt><dd id="rom-code">-</dd>
+                <dt>Region</dt><dd id="rom-region">-</dd>
+                <dt>Version</dt><dd id="rom-version">-</dd>
+                <dt>ROM Size</dt><dd id="rom-rom-size">-</dd>
+                <dt>RAM Size</dt><dd id="rom-ram-size">-</dd>
+                <dt>SRAM Size</dt><dd id="rom-sram-size">-</dd>
+                <dt>Headered</dt><dd id="rom-headered">-</dd>
+              </dl>
+              <div id="status-line" class="status">Load the Yoshi's Island ROM to begin.</div>
+            </div>
+          </aside>
+
+          <section class="panel panel-levels">
+            <div class="panel-header">
+              <div>
+                <h2 class="panel-title">Levels</h2>
+              </div>
+              <div class="actions">
+                <input class="search" id="search-input" value="" placeholder="Filter by ID, pointer, count..." />
+                <label class="btn ghost">
+                  <input id="select-visible" type="checkbox" />
+                  <span>Select visible</span>
+                </label>
+              </div>
+            </div>
+            <div class="panel-body table-panel">
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Select</th>
+                      <th class="icon-col">Icon</th>
+                      <th>Level #</th>
+                      <th>Data Pointer</th>
+                      <th>Sprite Pointer</th>
+                      <th>Objects</th>
+                      <th>Exits</th>
+                      <th>Sprites</th>
+                      <th>Size</th>
+                    </tr>
+                  </thead>
+                  <tbody id="levels-body">
+                    <tr><td colspan="9" class="empty-row">Load a ROM to populate level data.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+
+      <div id="modal-root"></div>
+    </div>
+
+    <script>
+      import '../scripts/app';
+    </script>
+  </body>
+</html>

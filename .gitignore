@@ -1,0 +1,13 @@
+# Dependencies and builds
+node_modules/
+dist/
+
+# Old native project and compiled output
+source/
+build/
+
+# Test ROM fixtures and generated binary outputs
+tests/*.smc
+tests/*.sfc
+tests/yi-jp-1.0-levels/
+tests/web-exported-tests/

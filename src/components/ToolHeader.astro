@@ -1,0 +1,28 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  eyebrow: string;
+  iconUrl: string;
+}
+
+const { title, subtitle, eyebrow, iconUrl } = Astro.props as Props;
+---
+<header class="hero">
+  <div class="hero-top">
+    <div class="brand">
+      <img class="tool-icon" src={iconUrl} alt="" aria-hidden="true" />
+      <div>
+        <p class="eyebrow">{eyebrow}</p>
+        <h1>{title}</h1>
+        <p class="subtitle">{subtitle}</p>
+      </div>
+    </div>
+    <div class="actions actions-wrap">
+      <slot name="actions" />
+    </div>
+  </div>
+  <div class="dropzone" id="dropzone">
+    <slot name="dropzone" />
+  </div>
+</header>
